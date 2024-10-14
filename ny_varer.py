@@ -4,10 +4,11 @@ import json
 from os import path
 class varer:
     def ny_vare():
-
+        global sssssss
+        sssssss=0
         global navn
         global text_widget
-        global tall_widget
+        global talll_widget
         global tall
         tall=""
         navn=""
@@ -23,8 +24,8 @@ class varer:
             navn=text_widget
         def talle():
             global tall
-            global tall_widget
-            tall=tall_widget
+            global talll_widget
+            tall=talll_widget
           
 
 
@@ -37,7 +38,7 @@ class varer:
                 global tall
                 global tall_widget
                 navn=text_widget.get("1.0", "end-1c")
-                tall=tall_widget.get("1.0", "end-1c")
+                tall=talll_widget.get("1.0", "end-1c")
 
                 jsonVarer.append({
                     "title": str(navn),
@@ -52,14 +53,21 @@ class varer:
                 })
                 fp.seek(0)
                 json.dump(jsonVarer, fp, indent=4)
-        
+                root.destroy
+                root.quit
+
+
+    
         def ting():
-            endre_variabel()     
-            global tall_widget
-            tall_widget = tk.Text(root)
-            tall_widget.pack(padx=10, pady=10, fill="both")
-            pris= tk.Button(root, text="leg til prisen", command=prisen)
-            pris.pack(pady=10)
+            endre_variabel()
+            global sssssss   
+            global talll_widget
+            if sssssss ==0 :
+                talll_widget = tk.Text(root)
+                talll_widget.pack(padx=10, pady=10, fill="both")
+                sssssss=1
+                pris= tk.Button(root, text="leg til prisen", command=prisen)
+                pris.pack(pady=10)
         
         text_widget = tk.Text(root)
         text_widget.pack(padx=10, pady=10, fill="both")

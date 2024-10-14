@@ -37,7 +37,7 @@ class SearchApp:
         self.search_frame = ttk.Frame(self.master, style="SearchFrame.TFrame")
         self.search_frame.pack(pady=10, padx=10, fill=tk.X)
 
-        # Search label
+        # Search label tall_widget.pack(padx=10, pady=10, fill="both")
         self.search_label = ttk.Label(self.search_frame, text="Search:", style="SearchFrame.TLabel")
         self.search_label.pack(side=tk.LEFT)
 
@@ -67,6 +67,7 @@ class SearchApp:
             self.listbox.delete(0, tk.END)
             self.listbox.insert(tk.END, "Please enter a search term")
             return
+        #label.pack() tall_widget.pack(padx=10, pady=10, fill="both")
         
         with open('varer.json') as data:    
             items = json.load(data)
