@@ -7,6 +7,8 @@ class SearchApp:
         self.master = master
         self.master.title("Search Application")
         self.master.geometry("400x300")
+        self.toggleStock = True
+        self.togglePrice = True
 
         # Create menubar
         menubar = tk.Menu(self.master, bg="black", fg="white")
@@ -52,9 +54,9 @@ class SearchApp:
         self.show_all.pack(side=tk.LEFT, padx=5)
 
         # Sort buttons
-        self.sortPriceButton = ttk.Button(self.search_frame, text="Sort price, Ascending", command=self.show_books_price_acsending)
+        self.sortPriceButton = ttk.Button(self.search_frame, text="Sort price, Ascending", command=self.show_books_price)
 
-        self.sortStockButton = ttk.Button(self.search_frame, text="Sort stock, Ascending", command=self.show_books_stock_acsending)
+        self.sortStockButton = ttk.Button(self.search_frame, text="Sort stock, Ascending", command=self.show_books_stock)
 
         # Listbox to display results
         self.listbox = tk.Listbox(self.master, height=10, width=40, bg='black', fg='white')
@@ -71,30 +73,42 @@ class SearchApp:
         self.sortPriceButton.pack(side=tk.LEFT, padx=5)
         self.sortStockButton.pack(side=tk.LEFT, padx=5)
         
-    def show_books_price_acsending(self):
+    def show_books_price(self):
         self.listbox.delete(0, tk.END)  # Clear existing items
         with open('varer.json', 'r') as f:
                 books = json.load(f)
             
+        self.togglePrice = not self.togglePrice
+        if self.togglePrice:
+            self.sortPriceButton.config(text="Sort price, Descending")
+        else:
+            self.sortPriceButton.config(text="Sort price, Ascending")
             # Sort books based on price
-        price_sorted_books = sorted(books, key=lambda x: x['price'], reverse=True)
+        price_sorted_books = sorted(books, key=lambda x: x['price'], reverse=self.togglePrice)
             
             # Print sorted books to listbox
         for book in price_sorted_books:
                 self.listbox.insert(tk.END, f"{book['title']} by {book['author']}, Price: {book['price']}")
-        
-    def show_books_stock_acsending(self):
+            
+    def show_books_stock(self):
+            
         self.listbox.delete(0, tk.END)  # Clear existing items
         with open('varer.json', 'r') as f:
-                books = json.load(f)
-            
-            # Sort books based on price
-        stock_sorted_books = sorted(books, key=lambda x: x['stock'], reverse=True)
-            
-            # Print sorted books to listbox
+                    books = json.load(f)
+                
+        self.toggleStock = not self.toggleStock
+        if self.toggleStock:
+            self.sortStockButton.config(text="Sort stock, Descending")
+        else:
+            self.sortStockButton.config(text="Sort stock, Ascending")
+
+        stock_sorted_books = sorted(books, key=lambda x: x['stock'], reverse=self.toggleStock)
+                
+                # Print sorted books to listbox
         for book in stock_sorted_books:
-                self.listbox.insert(tk.END, f"{book['title']} by {book['author']}, stock: {book['stock']}")
-        
+                    self.listbox.insert(tk.END, f"{book['title']} by {book['author']}, stock: {book['stock']}")
+            
+            
     
 
     def show_about(self):
