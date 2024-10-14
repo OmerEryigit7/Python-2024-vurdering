@@ -51,6 +51,11 @@ class SearchApp:
         self.show_all = ttk.Button(self.search_frame, text="Show All books", command=self.show_books)
         self.show_all.pack(side=tk.LEFT, padx=5)
 
+        # Sort buttons
+        self.sortPriceButton = ttk.Button(self.search_frame, text="Sort price, Ascending", command=self.show_books_price_acsending)
+
+        self.sortStockButton = ttk.Button(self.search_frame, text="Sort stock, Ascending", command=self.show_books_stock_acsending)
+
         # Listbox to display results
         self.listbox = tk.Listbox(self.master, height=10, width=40, bg='black', fg='white')
         self.listbox.pack(pady=10, fill=tk.BOTH, expand=True)
@@ -61,8 +66,36 @@ class SearchApp:
             books = json.load(f)
         
         for book in books:
-            self.listbox.insert(tk.END, f"{book['title']} by {book['author']}")
+            self.listbox.insert(tk.END, f"{book['title']} by {book['author']}, price: {book['price']}, stock: {book['stock']}")
         
+        self.sortPriceButton.pack(side=tk.LEFT, padx=5)
+        self.sortStockButton.pack(side=tk.LEFT, padx=5)
+        
+    def show_books_price_acsending(self):
+        self.listbox.delete(0, tk.END)  # Clear existing items
+        with open('varer.json', 'r') as f:
+                books = json.load(f)
+            
+            # Sort books based on price
+        price_sorted_books = sorted(books, key=lambda x: x['price'], reverse=True)
+            
+            # Print sorted books to listbox
+        for book in price_sorted_books:
+                self.listbox.insert(tk.END, f"{book['title']} by {book['author']}, Price: {book['price']}")
+        
+    def show_books_stock_acsending(self):
+        self.listbox.delete(0, tk.END)  # Clear existing items
+        with open('varer.json', 'r') as f:
+                books = json.load(f)
+            
+            # Sort books based on price
+        stock_sorted_books = sorted(books, key=lambda x: x['stock'], reverse=True)
+            
+            # Print sorted books to listbox
+        for book in stock_sorted_books:
+                self.listbox.insert(tk.END, f"{book['title']} by {book['author']}, stock: {book['stock']}")
+        
+    
 
     def show_about(self):
         about_window = tk.Toplevel(self.master)
@@ -72,6 +105,9 @@ class SearchApp:
         label.pack()
 
     def search(self):
+        self.sortPriceButton.pack_forget()
+        self.sortStockButton.pack_forget()
+
         query = self.search_entry.get()
     
         if not query:
@@ -96,6 +132,7 @@ class SearchApp:
         else:
             for item in filtered_titles:
                 self.listbox.insert(tk.END, item)
+        
 
         
 

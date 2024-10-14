@@ -5,7 +5,7 @@
       "genre": "Children's Humor",
       "publicationYear": 2007,
       "summary": "The story follows Greg Heffley, a middle-school student trying to navigate adolescence and survive seventh grade.",
-      "price": 200,
+      "price": 150,
       "stock": 4
     },
     {
@@ -15,7 +15,7 @@
       "publicationYear": 1997,
       "summary": "The series follows Harry Potter, an orphan boy who discovers he is a wizard and attends Hogwarts School of Witchcraft and Wizardry.",
       "price": 200,
-      "stock": 3
+      "stock": 5
     },
     {
       "title": "The Lord of the Rings",
@@ -23,8 +23,8 @@
       "genre": "High Fantasy",
       "publicationYear": 1954,
       "summary": "A hobbit named Frodo Baggins inherits the One Ring and embarks on a perilous journey to destroy it in the fires of Mount Doom.",
-      "price": 200,
-      "stock": 4
+      "price": 250,
+      "stock": 1
     }
   ]
   
