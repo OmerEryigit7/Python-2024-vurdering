@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import json
+import ny_varer as ny
 
 class SearchApp:
     def __init__(self, master):
@@ -19,8 +20,9 @@ class SearchApp:
 
         # Help menu
         help_menu = tk.Menu(menubar, tearoff=0)
-        help_menu.add_command(label="About", command=self.show_about)
-        menubar.add_cascade(label="Help", menu=help_menu)
+        help_menu.add_command(label="lege til ny varer", command=ny.ny_vare)
+        help_menu.add_command(label="endre på varer", command=ny.ny_vare)
+        menubar.add_cascade(label="vare info", menu=help_menu)
 
         # Set background color to black
         self.master.configure(bg='black')

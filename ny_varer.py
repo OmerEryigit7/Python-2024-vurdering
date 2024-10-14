@@ -21,4 +21,3 @@ def ny_vare():
 
 
     root.mainloop()
-ny_vare()
