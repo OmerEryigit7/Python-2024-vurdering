@@ -4,6 +4,7 @@ import json
 from os import path
 class varer:
     def ny_vare():
+        # legger til alle globale verdier
         global sssssss
         sssssss=0
         global navn
@@ -68,15 +69,16 @@ class varer:
                 sssssss=1
                 pris= tk.Button(root, text="leg til prisen", command=prisen)
                 pris.pack(pady=10)
-        
+
+        #legger til text inputen
         text_widget = tk.Text(root)
         text_widget.pack(padx=10, pady=10, fill="both")
-
+        #legger til knappen
         ny_vare= tk.Button(root, text="leg til ny vare", command=ting)
         ny_vare.pack(pady=10)
 
-        status_label = tk.Label(root, text="", padx=1, pady=1)
-        status_label.pack()
+        #status_label = tk.Label(root, text="", padx=1, pady=1)
+        #status_label.pack()
 
 
 
