@@ -34,7 +34,7 @@ class SearchApp:
         # Search bar frame
         self.search_frame = ttk.Frame(self.master, style="SearchFrame.TFrame")
         self.search_frame.pack(pady=10, padx=10, fill=tk.X)
-
+    
         # Search label
         self.search_label = ttk.Label(self.search_frame, text="Search:", style="SearchFrame.TLabel")
         self.search_label.pack(side=tk.LEFT)
@@ -47,9 +47,22 @@ class SearchApp:
         self.search_button = ttk.Button(self.search_frame, text="Search", command=self.search, style="SearchFrame.TButton")
         self.search_button.pack(side=tk.LEFT, padx=5)
 
+        # Display all books button
+        self.show_all = ttk.Button(self.search_frame, text="Show All books", command=self.show_books)
+        self.show_all.pack(side=tk.LEFT, padx=5)
+
         # Listbox to display results
         self.listbox = tk.Listbox(self.master, height=10, width=40, bg='black', fg='white')
         self.listbox.pack(pady=10, fill=tk.BOTH, expand=True)
+
+    def show_books(self):
+        self.listbox.delete(0, tk.END)  # Clear existing items
+        with open('varer.json', 'r') as f:
+            books = json.load(f)
+        
+        for book in books:
+            self.listbox.insert(tk.END, f"{book['title']} by {book['author']}")
+        
 
     def show_about(self):
         about_window = tk.Toplevel(self.master)
