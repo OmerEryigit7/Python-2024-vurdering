@@ -34,5 +34,23 @@
         "summary": "A hobbit named Frodo Baggins inherits the One Ring and embarks on a perilous journey to destroy it in the fires of Mount Doom.",
         "price": 200,
         "stock": 4
+    },
+    {
+        "title": "Test",
+        "author": "J.R.R. Tolkien",
+        "genre": "High Fantasy",
+        "publicationYear": 1954,
+        "summary": "A hobbit named Frodo Baggins inherits the One Ring and embarks on a perilous journey to destroy it in the fires of Mount Doom.",
+        "price": 200,
+        "stock": 4
+    },
+    {
+        "title": "tall",
+        "author": "J.R.R. Tolkien",
+        "genre": "High Fantasy",
+        "publicationYear": 1954,
+        "summary": "A hobbit named Frodo Baggins inherits the One Ring and embarks on a perilous journey to destroy it in the fires of Mount Doom.",
+        "price": "100",
+        "stock": 4
     }
 ]

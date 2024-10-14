@@ -20,8 +20,8 @@ class SearchApp:
 
         # Help menu
         help_menu = tk.Menu(menubar, tearoff=0)
-        help_menu.add_command(label="lege til ny varer", command=ny.ny_vare)
-        help_menu.add_command(label="endre på varer", command=ny.ny_vare)
+        help_menu.add_command(label="lege til ny varer", command=ny.varer.ny_vare)
+        help_menu.add_command(label="endre på varer", command=ny.varer.ny_vare)
         menubar.add_cascade(label="vare info", menu=help_menu)
 
         # Set background color to black
