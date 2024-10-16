@@ -1,6 +1,33 @@
 import tkinter as tk
 from tkinter import ttk
 import json
+import secrets
+import string
+import hashlib
+from getpass import getpass
+USER_DETAILS_FILEPATH = "users.txt"
+
+def if_user_exists():
+    with open(USER_DETAILS_FILEPATH, "r") as f:
+        for line in f:
+            parts = line.split()
+            if parts[0] == username:
+                pass
+            else:
+                newUser2()
+            
+def newUser():
+    if_user_exists()
+
+def newUser2():
+    with open(USER_DETAILS_FILEPATH, "a") as file:
+        file.write(f"{username} {password}\n")
+
+
+username = "hei"
+password = "hei"
+
+loggedIn = False
 
 class SearchApp:
     def __init__(self, master):
@@ -42,6 +69,21 @@ class SearchApp:
         # Search button
         self.search_button = ttk.Button(self.search_frame, text="Søk", command=self.search, style="SearchFrame.TButton")
         self.search_button.grid(column=1, row=0)
+        
+        #Log in/log out/create user
+        if loggedIn == False:
+            self.login_button = ttk.Button(self.search_frame, text="Logg inn")
+            self.login_button.grid(column=2, row=0, padx=100)
+
+            self.login_button = ttk.Button(self.search_frame, text="Ny bruker", command=newUser)
+            self.login_button.grid(column=3, row=0)
+
+        if loggedIn == True:
+            self.login_button = ttk.Button(self.search_frame, text="Logg ut")
+            self.login_button.grid(column=2, row=0)
+
+            self.login_button = ttk.Button(self.search_frame, text="Bytt bruker")
+            self.login_button.grid(column=3, row=0)
 
         # Listbox to display results
         self.listbox = tk.Listbox(self.master, height=10, width=40, bg='#141414', fg='white', highlightthickness=0, bd=0)
@@ -79,8 +121,6 @@ class SearchApp:
         else:
             for item in filtered_titles:
                 self.listbox.insert(tk.END, item)
-
-        
 
 if __name__ == "__main__":
     root = tk.Tk()
