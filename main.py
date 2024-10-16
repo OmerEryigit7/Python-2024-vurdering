@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import json
 import ny_varer as ny
+import endre_varer as en
 
 class SearchApp:
     def __init__(self, master):
@@ -21,7 +22,7 @@ class SearchApp:
         # Help menu
         help_menu = tk.Menu(menubar, tearoff=0)
         help_menu.add_command(label="lege til ny varer", command=ny.varer.ny_vare)
-        help_menu.add_command(label="endre på varer", command=ny.varer.ny_vare)
+        help_menu.add_command(label="endre på varer", command=en.start)
         menubar.add_cascade(label="vare info", menu=help_menu)
 
         # Set background color to black
@@ -37,7 +38,7 @@ class SearchApp:
         self.search_frame = ttk.Frame(self.master, style="SearchFrame.TFrame")
         self.search_frame.pack(pady=10, padx=10, fill=tk.X)
 
-        # Search label tall_widget.pack(padx=10, pady=10, fill="both")
+        # Search label 
         self.search_label = ttk.Label(self.search_frame, text="Search:", style="SearchFrame.TLabel")
         self.search_label.pack(side=tk.LEFT)
 
