@@ -25,5 +25,77 @@
         "summary": "A hobbit named Frodo Baggins inherits the One Ring and embarks on a perilous journey to destroy it in the fires of Mount Doom.",
         "price": 200,
         "stock": 4
+    },
+    {
+        "title": "olll",
+        "author": "J.R.R. Tolkien",
+        "genre": "High Fantasy",
+        "publicationYear": 1954,
+        "summary": "A hobbit named Frodo Baggins inherits the One Ring and embarks on a perilous journey to destroy it in the fires of Mount Doom.",
+        "price": "1999",
+        "stock": 4
+    },
+    {
+        "title": "boook",
+        "author": "J.R.R. Tolkien",
+        "genre": "High Fantasy",
+        "publicationYear": 1954,
+        "summary": "A hobbit named Frodo Baggins inherits the One Ring and embarks on a perilous journey to destroy it in the fires of Mount Doom.",
+        "price": "123",
+        "stock": 4
+    },
+    {
+        "title": "adhgasd",
+        "author": "J.R.R. Tolkien",
+        "genre": "High Fantasy",
+        "publicationYear": 1954,
+        "summary": "A hobbit named Frodo Baggins inherits the One Ring and embarks on a perilous journey to destroy it in the fires of Mount Doom.",
+        "price": "1234",
+        "stock": 4
+    },
+    {
+        "title": "eksempel",
+        "author": "",
+        "genre": "High Fantasy",
+        "publicationYear": 1954,
+        "summary": "A hobbit named Frodo Baggins inherits the One Ring and embarks on a perilous journey to destroy it in the fires of Mount Doom.",
+        "price": "123",
+        "stock": 4
+    },
+    {
+        "title": "bok",
+        "author": "noen",
+        "genre": "High Fantasy",
+        "publicationYear": 1954,
+        "summary": "A hobbit named Frodo Baggins inherits the One Ring and embarks on a perilous journey to destroy it in the fires of Mount Doom.",
+        "price": "1234",
+        "stock": 4
+    },
+    {
+        "title": "bob",
+        "author": "bob",
+        "genre": "noen",
+        "publicationYear": "2020",
+        "summary": "bob",
+        "price": "100",
+        "stock": "2"
+    },
+    {
+        "title": "asd",
+        "author": "asd",
+        "genre": "asd",
+        "publicationYear": "123",
+        "summary": "asd",
+        "price": "12",
+        "stock": "12"
+    },
+    {
+        "title": "qwe",
+        "author": "qwe",
+        "genre": "qwe",
+        "publicationYear": "123",
+        "summary": "qwe",
+        "price": "32",
+        "stock": "123"
     }
 ]

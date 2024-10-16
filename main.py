@@ -78,7 +78,6 @@ class SearchApp:
         # Perform the search on the titles
         filtered_titles = [title for title in titles if query.lower() in title.lower()]
         
-    
         self.listbox.delete(0, tk.END)
     
         if not filtered_titles:
