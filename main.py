@@ -62,6 +62,10 @@ class SearchApp:
         self.listbox = tk.Listbox(self.master, height=10, width=40, bg='black', fg='white')
         self.listbox.pack(pady=10, fill=tk.BOTH, expand=True)
 
+
+        #bind enter til search
+        self.search_entry.bind("<Return>", lambda event: self.search())
+
     def show_books(self):
         self.listbox.delete(0, tk.END)  # Clear existing items
         with open('varer.json', 'r') as f:
