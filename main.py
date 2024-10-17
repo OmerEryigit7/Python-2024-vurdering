@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 import json
+import ny_varer as ny
+import endre_varer as en
+
 
 class SearchApp:
     def __init__(self, master):
@@ -10,6 +13,7 @@ class SearchApp:
         self.toggleStock = True
         self.togglePrice = True
         self.filtered_books = []  # Store filtered books
+
 
         # Create menubar
         menubar = tk.Menu(self.master, bg="black", fg="white")
@@ -22,8 +26,10 @@ class SearchApp:
 
         # Help menu
         help_menu = tk.Menu(menubar, tearoff=0)
-        help_menu.add_command(label="About", command=self.show_about)
-        menubar.add_cascade(label="Help", menu=help_menu)
+        help_menu.add_command(label="lege til ny varer", command=ny.varer.ny_vare)
+        help_menu.add_command(label="endre på varer", command=en.start)
+        menubar.add_cascade(label="vare info", menu=help_menu)
+
 
         # Set background color to black
         self.master.configure(bg='black')
@@ -38,7 +44,6 @@ class SearchApp:
         self.search_frame = ttk.Frame(self.master, style="SearchFrame.TFrame")
         self.search_frame.pack(pady=10, padx=10, fill=tk.X)
 
-        # Search label
         self.search_label = ttk.Label(self.search_frame, text="Search:", style="SearchFrame.TLabel")
         self.search_label.pack(side=tk.LEFT)
 
@@ -132,6 +137,12 @@ class SearchApp:
         for book in stock_sorted_books:
             self.listbox.insert(tk.END, f"{book['title']} by {book['author']}, stock: {book['stock']}")
 
+
+        # Listbox to display results
+        self.listbox = tk.Listbox(self.master, height=10, width=40, bg='black', fg='white')
+        self.listbox.pack(pady=10, fill=tk.BOTH, expand=True)
+
+
     def show_about(self):
         about_window = tk.Toplevel(self.master)
         about_window.title("About")
@@ -140,6 +151,7 @@ class SearchApp:
         label.pack()
 
     def search(self):
+
         self.sortPriceButton.pack_forget()
         self.sortStockButton.pack_forget()
 
@@ -166,6 +178,9 @@ class SearchApp:
         else:
             for item in self.filtered_books:
                 self.listbox.insert(tk.END, f"{item['title']} by {item['author']}")
+
+        query = self.search_entry.get()
+
 
 if __name__ == "__main__":
     root = tk.Tk()
