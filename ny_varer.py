@@ -80,7 +80,6 @@ class varer:
                     #legger til den nye boken
                     fp.seek(0)
                     json.dump(jsonVarer, fp, indent=4)
-                    root.destroy
                 except ValueError:
                     root = tk.Tk()
                     root.title("error")
