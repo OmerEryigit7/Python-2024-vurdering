@@ -25,16 +25,5 @@
         "summary": "A hobbit named Frodo Baggins inherits the One Ring and embarks on a perilous journey to destroy it in the fires of Mount Doom.",
         "price": 200,
         "stock": 4
-    },
-
-
-    {
-        "title": "ppp",
-        "author": "pp",
-        "genre": "pp",
-        "publicationYear": 123,
-        "summary": "pp",
-        "price": 12,
-        "stock": 3
     }
 ]
