@@ -5,11 +5,6 @@ def start():
     def load_bøker():
         with open('varer.json', 'r') as f:
             return json.load(f)
-    def load_pris():
-        pass
-
-    def loag_stock():
-        pass
 
     def find_bøker(title):
         products = load_bøker()
@@ -76,7 +71,6 @@ def start():
             with open("varer.json", "w") as file:
                 json.dump(data, file, indent=4)
             
-            messagebox.showinfo("Suksess", f"Ny vare '{title}' er lagt til.")
 
             
             with open("varer.json", "w") as file:

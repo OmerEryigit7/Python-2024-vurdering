@@ -33,27 +33,12 @@ class varer:
         root = tk.Tk()
         root.title("ny vare")
         tall_widget=tk.Text(root)
-        def endre_variabel():
-            #setter verdien til navn
-            global navn
-            global text_widget
 
-            navn=text_widget
-        def talle():
-            #setter verdien til tall
-            global tall
-            global talll_widget
-            tall=talll_widget
-        def skrevBook():
-            global author
-            global author_widget
-            author=author_widget
 
           
 
 
         def prisen():
-            talle()
             #lagrer filnavnet
             filename="varer.json"
             with open(filename, "r+") as fp:
@@ -96,13 +81,6 @@ class varer:
                 json.dump(jsonVarer, fp, indent=4)
                 root.destroy
 
-
-
-    
-        def ting():
-            endre_variabel()
-            prisen()
-            skrevBook()
 
         #legger til text inputen
         
