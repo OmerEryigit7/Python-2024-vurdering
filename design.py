@@ -1,32 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import json
-import secrets
-import string
-import hashlib
-from getpass import getpass
 USER_DETAILS_FILEPATH = "users.txt"
-
-def if_user_exists():
-    with open(USER_DETAILS_FILEPATH, "r") as f:
-        for line in f:
-            parts = line.split()
-            if parts[0] == username:
-                pass
-            else:
-                newUser2()
-            
-def newUser():
-    if_user_exists()
-
-def newUser2():
-    with open(USER_DETAILS_FILEPATH, "a") as file:
-        file.write(f"{username} {password}\n")
-
-username = "hei"
-password = "hei"
-
-loggedIn = False
 
 class SearchApp:
 
@@ -36,26 +11,41 @@ class SearchApp:
         self.master.geometry("400x300")
 
         self.search_frame = tk.Frame(self.master, bg='#141414')
-        
-
-        self.show_search_frame()
+    
+        self.setup_signup_frame()
 
     def setup_signup_frame(self):
+
+        def authenticate(username, password):
+            with open(USER_DETAILS_FILEPATH, "r") as f:
+                for line in f:
+                    parts = line.split()
+                    if parts[0] == username and parts[1] == password:
+                        self.setup_search_frame()
+                        self.search_frame.tkraise()
+                        return True
+        def submit():
+            username = self.username_entry.get().lower()
+            password = self.password_entry.get()
+            print(username, password)
+            authenticate(username, password)
+            
         self.signup_frame = tk.Frame(self.master, bg='#141414')
         self.signup_frame.pack(fill=tk.BOTH, expand=True)
-        ttk.Label(self.signup_frame, text="Username:", background='#141414', foreground='white').pack()
+        ttk.Label(self.signup_frame, text="Brukernavn:", background='#141414', foreground='white').pack()
         self.username_entry = ttk.Entry(self.signup_frame)
+        self.password_entry = ttk.Entry(self.signup_frame)
+        self.submitLoginButton = ttk.Button(self.signup_frame, text="Logg inn", command=submit)
         self.username_entry.pack()
+        ttk.Label(self.signup_frame, text="Passord:", background='#141414', foreground='white').pack()
+        self.password_entry.pack()
+        self.submitLoginButton.pack()
 
-    def plzwork(self):
-        self.setup_signup_frame()
 
     def show_signup_frame(self):
         self.signup_frame.tkraise()
     
-    def show_search_frame(self):
-        self.search_frame.tkraise()
-
+    def setup_search_frame(self):
         # Create menubar
         menubar = tk.Menu(self.master, bg="black", fg="white")
         self.master.config(menu=menubar)
@@ -80,7 +70,7 @@ class SearchApp:
         self.style.map("SearchFrame.TFrame", background=[('active', 'gray75')])
 
         # Search bar frame
-        self.search_frame = ttk.Frame(self.master, style="SearchFrame.TFrame")
+        self.search_frame = ttk.Frame(self.signup_frame, style="SearchFrame.TFrame")
         self.search_frame.pack()
 
         # Search entry
@@ -90,20 +80,6 @@ class SearchApp:
         # Search button
         self.search_button = ttk.Button(self.search_frame, text="Søk", command=self.search, style="SearchFrame.TButton")
         self.search_button.grid(column=1, row=0)
-        
-        #Log in/log out/create user
-        if loggedIn == False:
-            login_button = ttk.Button(self.search_frame, text="Logg inn")
-            login_button.grid(column=2, row=0, padx=100)
-
-            signup_button = ttk.Button(self.search_frame, text="Ny bruker", command=self.show_signup_frame)
-            signup_button.grid(column=3, row=0)
-        else:
-            logout_button = ttk.Button(self.search_frame, text="Logg ut")
-            logout_button.grid(column=2, row=0)
-
-            switch_user_button = ttk.Button(self.search_frame, text="Bytt bruker")
-            switch_user_button.grid(column=3, row=0)
 
         # Listbox to display results
         self.listbox = tk.Listbox(self.master, height=10, width=40, bg='#141414', fg='white', highlightthickness=0, bd=0)
