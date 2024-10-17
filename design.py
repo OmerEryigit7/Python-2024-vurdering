@@ -23,17 +23,38 @@ def newUser2():
     with open(USER_DETAILS_FILEPATH, "a") as file:
         file.write(f"{username} {password}\n")
 
-
 username = "hei"
 password = "hei"
 
 loggedIn = False
 
 class SearchApp:
+
     def __init__(self, master):
         self.master = master
         self.master.title("Search Application")
         self.master.geometry("400x300")
+
+        self.search_frame = tk.Frame(self.master, bg='#141414')
+        
+
+        self.show_search_frame()
+
+    def setup_signup_frame(self):
+        self.signup_frame = tk.Frame(self.master, bg='#141414')
+        self.signup_frame.pack(fill=tk.BOTH, expand=True)
+        ttk.Label(self.signup_frame, text="Username:", background='#141414', foreground='white').pack()
+        self.username_entry = ttk.Entry(self.signup_frame)
+        self.username_entry.pack()
+
+    def plzwork(self):
+        self.setup_signup_frame()
+
+    def show_signup_frame(self):
+        self.signup_frame.tkraise()
+    
+    def show_search_frame(self):
+        self.search_frame.tkraise()
 
         # Create menubar
         menubar = tk.Menu(self.master, bg="black", fg="white")
@@ -72,18 +93,17 @@ class SearchApp:
         
         #Log in/log out/create user
         if loggedIn == False:
-            self.login_button = ttk.Button(self.search_frame, text="Logg inn")
-            self.login_button.grid(column=2, row=0, padx=100)
+            login_button = ttk.Button(self.search_frame, text="Logg inn")
+            login_button.grid(column=2, row=0, padx=100)
 
-            self.login_button = ttk.Button(self.search_frame, text="Ny bruker", command=newUser)
-            self.login_button.grid(column=3, row=0)
+            signup_button = ttk.Button(self.search_frame, text="Ny bruker", command=self.show_signup_frame)
+            signup_button.grid(column=3, row=0)
+        else:
+            logout_button = ttk.Button(self.search_frame, text="Logg ut")
+            logout_button.grid(column=2, row=0)
 
-        if loggedIn == True:
-            self.login_button = ttk.Button(self.search_frame, text="Logg ut")
-            self.login_button.grid(column=2, row=0)
-
-            self.login_button = ttk.Button(self.search_frame, text="Bytt bruker")
-            self.login_button.grid(column=3, row=0)
+            switch_user_button = ttk.Button(self.search_frame, text="Bytt bruker")
+            switch_user_button.grid(column=3, row=0)
 
         # Listbox to display results
         self.listbox = tk.Listbox(self.master, height=10, width=40, bg='#141414', fg='white', highlightthickness=0, bd=0)
