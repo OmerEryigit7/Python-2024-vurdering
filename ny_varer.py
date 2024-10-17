@@ -63,23 +63,30 @@ class varer:
                 navn=text_widget.get("1.0", "end-1c")
                 tall=talll_widget.get("1.0", "end-1c")
                 author=author_widget.get("1.0", "end-1c")
+                try:
 
-                jsonVarer.append({
-                    #hva som skal bli puttet in i systemet
-                    "title": str(navn),
-                    "author": str(author),
-                    "genre": str(genre),
-                    "publicationYear": int(Year),
-                    "summary": str(summary),
-                    "price": int(tall),
-                    "stock": int(stock)
-                    
+                    jsonVarer.append({
+                        #hva som skal bli puttet in i systemet
+                        "title": str(navn),
+                        "author": str(author),
+                        "genre": str(genre),
+                        "publicationYear": int(Year),
+                        "summary": str(summary),
+                        "price": int(tall),
+                        "stock": int(stock)
+                        
 
-                })
-                #legger til den nye boken
-                fp.seek(0)
-                json.dump(jsonVarer, fp, indent=4)
-                root.destroy
+                    })
+                    #legger til den nye boken
+                    fp.seek(0)
+                    json.dump(jsonVarer, fp, indent=4)
+                    root.destroy
+                except ValueError:
+                    root = tk.Tk()
+                    root.title("error")
+                    label=tk.Label(root, text="skriv tall på pris, år og stock ikke bokstaver")
+                    label.pack(pady=10)
+
 
 
         #legger til text inputen
@@ -88,9 +95,8 @@ class varer:
         label=tk.Label(root, text="bok navn", font=('Arial', 12))
         label.pack(pady=10)
         text_widget.pack(padx=10, pady=10, fill="both")
-        #legger til knappen
         
-        #global sssssss   
+
         global talll_widget
         
         #legger til text inputen
@@ -125,6 +131,7 @@ class varer:
         stock_widget = tk.Text(root, height=5)
         stock_widget.pack(padx=10, pady=10, fill="both")
         
+        #button
         ny_vare= tk.Button(root, text="leg til ny vare", command=prisen)
         ny_vare.pack(pady=10)
 
