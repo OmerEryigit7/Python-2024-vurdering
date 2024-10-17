@@ -84,10 +84,10 @@ class varer:
                     "title": str(navn),
                     "author": str(author),
                     "genre": str(genre),
-                    "publicationYear": str(Year),
+                    "publicationYear": int(Year),
                     "summary": str(summary),
-                    "price": str(tall),
-                    "stock": str(stock)
+                    "price": int(tall),
+                    "stock": int(stock)
                     
 
                 })
