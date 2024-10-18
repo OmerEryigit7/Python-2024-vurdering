@@ -210,11 +210,11 @@ class SearchApp:
                     # Update the book in the JSON file
                     book['stock'] = new_stock
                     
-                    # Save the updated JSON file
+                    # lagrer json filen
                     with open('varer.json', 'w') as f:
                         json.dump(books, f, indent=2)
                     
-                    # Refresh the listbox
+                    
                     self.update_listbox()
                     break
     def update_listbox(self):
