@@ -47,6 +47,9 @@ class SearchApp:
         self.search_label = ttk.Label(self.search_frame, text="Search:", style="SearchFrame.TLabel")
         self.search_label.pack(side=tk.LEFT)
 
+        self.button= ttk.Button(self.search_frame,text="kjøp", command=self.kjøp_knapp)
+        self.button.pack(side=tk.RIGHT, padx=5)
+
         # Search entry
         self.search_entry = ttk.Entry(self.search_frame, width=30, style="SearchFrame.TEntry")
         self.search_entry.pack(side=tk.LEFT, padx=5)
@@ -62,7 +65,7 @@ class SearchApp:
         # Sort buttons
         self.sortPriceButton = ttk.Button(self.search_frame, text="Sort price, Ascending", command=self.show_books_price)
         self.sortStockButton = ttk.Button(self.search_frame, text="Sort stock, Ascending", command=self.show_books_stock)
-        self.sortStockButton = ttk.Button(self.search_frame, text="Sort stock, Ascending", command=self.kjøp_knapp)
+
 
         # Listbox to display results
         self.listbox = tk.Listbox(self.master, height=10, width=40, bg='black', fg='white', selectbackground='gray')

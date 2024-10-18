@@ -6,7 +6,7 @@
     "publicationYear": 2007,
     "summary": "The story follows Greg Heffley, a middle-school student trying to navigate adolescence and survive seventh grade.",
     "price": 12.0,
-    "stock": 113
+    "stock": 110
   },
   {
     "title": "Harry Potter",
@@ -33,6 +33,6 @@
     "publicationYear": 12,
     "summary": "a",
     "price": 1,
-    "stock": 12
+    "stock": 11
   }
 ]
