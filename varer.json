@@ -25,6 +25,23 @@
         "summary": "A hobbit named Frodo Baggins inherits the One Ring and embarks on a perilous journey to destroy it in the fires of Mount Doom.",
         "price": 200,
         "stock": 4
+    },
+    {
+        "title": "Minecraft",
+        "author": "Notch",
+        "genre": "Minecraft",
+        "publicationYear": 1909,
+        "summary": "minecraft ",
+        "price": 400,
+        "stock": 6
+    },
+    {
+        "title": "skibidi",
+        "author": "nore",
+        "genre": "porn",
+        "publicationYear": 20,
+        "summary": "hey baby",
+        "price": 69,
+        "stock": 1112
     }
 ]
-
