@@ -3,6 +3,8 @@ from tkinter import ttk
 import json
 import ny_varer as ny
 import endre_varer as en
+USER_DETAILS_FILEPATH = "users.txt"
+
 
 
 class SearchApp:
@@ -13,10 +15,44 @@ class SearchApp:
         self.toggleStock = True
         self.togglePrice = True
         self.filtered_books = []  # Store filtered books
+        self.setup_signup_frame()
 
+    def setup_signup_frame(self):
 
+        def authenticate(username, password):
+            self.errormessage.destroy()
+            with open(USER_DETAILS_FILEPATH, "r") as f:
+                for line in f:
+                    parts = line.split()
+                    if parts[0] == username and parts[1] == password:
+                        self.setup_mainFrame()
+                        self.mainFrame.tkraise()
+                        self.signup_frame.destroy()
+                        return True
+            self.errormessage = ttk.Label(self.signup_frame, text="Feil brukernavn eller passord")
+            self.errormessage.pack()
+
+        def submit():
+            username = self.username_entry.get().lower()
+            password = self.password_entry.get()
+            authenticate(username, password)
+            
+        self.signup_frame = tk.Frame(self.master, bg='#141414')
+        self.signup_frame.pack(fill=tk.BOTH, expand=True)
+        ttk.Label(self.signup_frame, text="Brukernavn:", background='#141414', foreground='white').pack()
+        self.username_entry = ttk.Entry(self.signup_frame)
+        self.password_entry = ttk.Entry(self.signup_frame, show="*")
+        self.submitLoginButton = ttk.Button(self.signup_frame, text="Logg inn", command=submit)
+        self.username_entry.pack()
+        ttk.Label(self.signup_frame, text="Passord:", background='#141414', foreground='white').pack()
+        self.password_entry.pack()
+        self.submitLoginButton.pack()
+        self.errormessage = ttk.Label(self.signup_frame, text="Feil brukernavn eller passord")
+
+    def setup_mainFrame(self):
+        self.mainFrame = tk.Frame(self.master, bg='#141414')
         # Create menubar
-        menubar = tk.Menu(self.master, bg="black", fg="white")
+        menubar = tk.Menu(self.mainFrame, bg="black", fg="white")
         self.master.config(menu=menubar)
 
         # File menu
