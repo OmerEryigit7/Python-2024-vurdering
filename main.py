@@ -57,14 +57,14 @@ class SearchApp:
 
         # File menu
         file_menu = tk.Menu(menubar, tearoff=0)
-        file_menu.add_command(label="Exit", command=self.master.quit)
-        menubar.add_cascade(label="File", menu=file_menu)
+        menubar.add_command(label="Quit", command=self.master.quit)
+
 
         # Help menu
         help_menu = tk.Menu(menubar, tearoff=0)
-        help_menu.add_command(label="lege til ny varer", command=ny.varer.ny_vare)
+        help_menu.add_command(label="lege til nye varer", command=ny.varer.ny_vare)
         help_menu.add_command(label="endre på varer", command=en.start)
-        menubar.add_cascade(label="vare info", menu=help_menu)
+        menubar.add_cascade(label="vareinfo", menu=help_menu)
 
 
         # Set background color to black
