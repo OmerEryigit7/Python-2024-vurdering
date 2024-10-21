@@ -21,10 +21,10 @@ class SearchApp:
 
         def authenticate(username, password):
             self.errormessage.destroy()
-            with open(USER_DETAILS_FILEPATH, "r") as f:
-                for line in f:
-                    parts = line.split()
-                    if parts[0] == username and parts[1] == password:
+            with open(USER_DETAILS_FILEPATH, "r") as file:
+                for line in file:
+                    username_password = line.split()
+                    if username_password[0] == username and username_password[1] == password:
                         self.setup_mainFrame()
                         self.mainFrame.tkraise()
                         self.signup_frame.destroy()
