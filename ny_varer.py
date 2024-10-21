@@ -40,7 +40,7 @@ class varer:
 
         def prisen():
             #lagrer filnavnet
-            filename="varer.json"
+            filename="/home/elev/Documents/GitHub/Python-2024-vurdering/varer.json"
             with open(filename, "r+") as fp:
                 jsonVarer=json.load(fp)
                 global navn
@@ -101,33 +101,33 @@ class varer:
         #legger til text inputen
         label=tk.Label(root, text="bok pris", font=('Arial', 12))
         label.pack(pady=10)
-        talll_widget = tk.Text(root, height=5)
+        talll_widget = tk.Text(root, height=2)
         talll_widget.pack(padx=10, pady=10, fill="both")
         
         #legger til text inputen
         label=tk.Label(root, text="bok forfatter", font=('Arial', 12))
         label.pack(pady=10)
-        author_widget = tk.Text(root, height=5)
+        author_widget = tk.Text(root, height=2)
         author_widget.pack(padx=10, pady=10, fill="both")
         
         label=tk.Label(root, text="bok genre", font=('Arial', 12))
         label.pack(pady=10)
-        genre_widget = tk.Text(root, height=5)
+        genre_widget = tk.Text(root, height=2)
         genre_widget.pack(padx=10, pady=10, fill="both")
         
         label=tk.Label(root, text="utgit år", font=('Arial', 12))
         label.pack(pady=10)
-        Year_widget = tk.Text(root, height=5)
+        Year_widget = tk.Text(root, height=2)
         Year_widget.pack(padx=10, pady=10, fill="both")
 
         label=tk.Label(root, text="summary", font=('Arial', 12))
         label.pack(pady=10)
-        summary_widget = tk.Text(root, height=5)
+        summary_widget = tk.Text(root, height=2)
         summary_widget.pack(padx=10, pady=10, fill="both")
 
         label=tk.Label(root, text="stock", font=('Arial', 12))
         label.pack(pady=10)
-        stock_widget = tk.Text(root, height=5)
+        stock_widget = tk.Text(root, height=2)
         stock_widget.pack(padx=10, pady=10, fill="both")
         
         #button
