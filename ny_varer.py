@@ -5,8 +5,6 @@ from os import path
 class varer:
     def ny_vare():
         # legger til alle globale verdier
-        global sssssss
-        sssssss=0
         global navn
         global text_widget
         global talll_widget
@@ -32,7 +30,6 @@ class varer:
 
         root = tk.Tk()
         root.title("ny vare")
-        tall_widget=tk.Text(root)
 
 
           
