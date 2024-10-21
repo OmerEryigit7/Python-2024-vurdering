@@ -1,4 +1,4 @@
 import erlingsqlite
 
 
-erlingsqlite.print_books_by_title("the")
+erlingsqlite.print_books_by_title("diary")
