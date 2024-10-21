@@ -22,7 +22,7 @@ def start():
             products = [p for p in products if p['title'] != title]
             
             with open('varer.json', 'w') as f:
-                json.dump(products, f)
+                json.dump(products, f, indent=4)
             
 
             product_entry.delete(0, tk.END)

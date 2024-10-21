@@ -2,6 +2,7 @@
 import tkinter as tk
 import json
 from os import path
+from tkinter import *
 class varer:
     def ny_vare():
         # legger til alle globale verdier
@@ -26,10 +27,10 @@ class varer:
         tall=""
         navn=""
         genre=""
-        
 
         root = tk.Tk()
         root.title("ny vare")
+        
 
 
           
@@ -130,8 +131,10 @@ class varer:
         #button
         ny_vare= tk.Button(root, text="leg til ny vare", command=prisen)
         ny_vare.pack(pady=10)
+        
 
 
-
+        Listbox = tk.Listbox()
+        Listbox.insert(tk.END, *(f"Element {i} " for i in range(100)))
         root.mainloop()
 

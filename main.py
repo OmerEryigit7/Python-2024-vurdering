@@ -212,7 +212,7 @@ class SearchApp:
                     
                     # lagrer json filen
                     with open('varer.json', 'w') as f:
-                        json.dump(books, f, indent=2)
+                        json.dump(books, f, indent=24)
                     
                     
                     self.update_listbox()
