@@ -36,19 +36,69 @@ class SearchApp:
             username = self.username_entry.get().lower()
             password = self.password_entry.get()
             authenticate(username, password)
-            
+        
+        #Login Widgets
         self.signup_frame = tk.Frame(self.master, bg='#141414')
         self.signup_frame.pack(fill=tk.BOTH, expand=True)
-        ttk.Label(self.signup_frame, text="Brukernavn:", background='#141414', foreground='white').pack()
+        self.username = ttk.Label(self.signup_frame, text="Brukernavn:", background='#141414', foreground='white')
+        self.username.pack()
         self.username_entry = ttk.Entry(self.signup_frame)
         self.password_entry = ttk.Entry(self.signup_frame, show="*")
         self.submitLoginButton = ttk.Button(self.signup_frame, text="Logg inn", command=submit)
         self.username_entry.pack()
-        ttk.Label(self.signup_frame, text="Passord:", background='#141414', foreground='white').pack()
+        self.password = ttk.Label(self.signup_frame, text="Passord:", background='#141414', foreground='white')
+        self.password.pack()
         self.password_entry.pack()
         self.submitLoginButton.pack()
         self.errormessage = ttk.Label(self.signup_frame, text="Feil brukernavn eller passord")
         self.password_entry.bind("<Return>", lambda event: submit())
+
+
+
+        def signup():
+            def append_newuser():
+                username = self.newuser_entry.get().strip().lower()
+                password = self.newpass_entry.get().strip()
+
+                if username and password:  # Ensure both fields are filled
+                    with open("users.txt", "a") as file:
+                        file.write(f"{username} {password}\n")
+            # Optionally clear the entries and give a success message
+                        self.newuser_entry.delete(0, tk.END)
+                        self.newpass_entry.delete(0, tk.END)
+                        self.setup_mainFrame()
+                        self.mainFrame.tkraise()
+                        self.signup_frame.destroy()
+                        return True
+                else:
+                    ttk.Label(self.signup_frame, text="Vennligst fyll ut begge felt!", background='#141414', foreground='red').pack(pady=5)
+            def signup_widgets():
+                self.newuser = ttk.Label(self.signup_frame, text="Nytt Brukernavn:", background='#141414', foreground='white')
+                self.newuser_entry = ttk.Entry(self.signup_frame)
+                self.newuser.pack(pady=2)
+                self.newuser_entry.pack(pady=5)
+                self.newpass = ttk.Label(self.signup_frame, text="Nytt Passord:", background='#141414', foreground='white')
+                self.newpass_entry = ttk.Entry(self.signup_frame)
+                self.newpass.pack(pady=2)
+                self.newpass_entry.pack(pady=5)
+                self.newuser_button = ttk.Button(self.signup_frame, text="Lag ny bruker", command=append_newuser)
+                self.newuser_button.pack(pady=10)
+            self.username_entry.pack_forget()
+            self.password_entry.pack_forget()
+            self.submitLoginButton.pack_forget()
+            self.username.pack_forget()
+            self.password.pack_forget()
+            self.signup_button.pack_forget()
+            signup_widgets()
+            
+
+
+        #Sign up widget
+        self.signup_button = ttk.Button(self.signup_frame, text="Lag bruker", command=signup)
+        self.signup_button.pack(pady=20)
+        
+
+            
 
     def setup_mainFrame(self):
         self.mainFrame = tk.Frame(self.master, bg='#141414')
