@@ -48,6 +48,7 @@ class SearchApp:
         self.password_entry.pack()
         self.submitLoginButton.pack()
         self.errormessage = ttk.Label(self.signup_frame, text="Feil brukernavn eller passord")
+        self.password_entry.bind("<Return>", lambda event: submit())
 
     def setup_mainFrame(self):
         self.mainFrame = tk.Frame(self.master, bg='#141414')
