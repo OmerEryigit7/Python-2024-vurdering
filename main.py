@@ -36,18 +36,69 @@ class SearchApp:
             username = self.username_entry.get().lower()
             password = self.password_entry.get()
             authenticate(username, password)
-            
+        
+        #Login Widgets
         self.signup_frame = tk.Frame(self.master, bg='#141414')
         self.signup_frame.pack(fill=tk.BOTH, expand=True)
-        ttk.Label(self.signup_frame, text="Brukernavn:", background='#141414', foreground='white').pack()
+        self.username = ttk.Label(self.signup_frame, text="Brukernavn:", background='#141414', foreground='white')
+        self.username.pack()
         self.username_entry = ttk.Entry(self.signup_frame)
         self.password_entry = ttk.Entry(self.signup_frame, show="*")
         self.submitLoginButton = ttk.Button(self.signup_frame, text="Logg inn", command=submit)
         self.username_entry.pack()
-        ttk.Label(self.signup_frame, text="Passord:", background='#141414', foreground='white').pack()
+        self.password = ttk.Label(self.signup_frame, text="Passord:", background='#141414', foreground='white')
+        self.password.pack()
         self.password_entry.pack()
         self.submitLoginButton.pack()
         self.errormessage = ttk.Label(self.signup_frame, text="Feil brukernavn eller passord")
+        self.password_entry.bind("<Return>", lambda event: submit())
+
+
+
+        def signup():
+            def append_newuser():
+                username = self.newuser_entry.get().strip().lower()
+                password = self.newpass_entry.get().strip()
+
+                if username and password:  # Ensure both fields are filled
+                    with open("users.txt", "a") as file:
+                        file.write(f"{username} {password}\n")
+            # Optionally clear the entries and give a success message
+                        self.newuser_entry.delete(0, tk.END)
+                        self.newpass_entry.delete(0, tk.END)
+                        self.setup_mainFrame()
+                        self.mainFrame.tkraise()
+                        self.signup_frame.destroy()
+                        return True
+                else:
+                    ttk.Label(self.signup_frame, text="Vennligst fyll ut begge felt!", background='#141414', foreground='red').pack(pady=5)
+            def signup_widgets():
+                self.newuser = ttk.Label(self.signup_frame, text="Nytt Brukernavn:", background='#141414', foreground='white')
+                self.newuser_entry = ttk.Entry(self.signup_frame)
+                self.newuser.pack(pady=2)
+                self.newuser_entry.pack(pady=5)
+                self.newpass = ttk.Label(self.signup_frame, text="Nytt Passord:", background='#141414', foreground='white')
+                self.newpass_entry = ttk.Entry(self.signup_frame)
+                self.newpass.pack(pady=2)
+                self.newpass_entry.pack(pady=5)
+                self.newuser_button = ttk.Button(self.signup_frame, text="Lag ny bruker", command=append_newuser)
+                self.newuser_button.pack(pady=10)
+            self.username_entry.pack_forget()
+            self.password_entry.pack_forget()
+            self.submitLoginButton.pack_forget()
+            self.username.pack_forget()
+            self.password.pack_forget()
+            self.signup_button.pack_forget()
+            signup_widgets()
+            
+
+
+        #Sign up widget
+        self.signup_button = ttk.Button(self.signup_frame, text="Lag bruker", command=signup)
+        self.signup_button.pack(pady=20)
+        
+
+            
 
     def setup_mainFrame(self):
         self.mainFrame = tk.Frame(self.master, bg='#141414')
@@ -98,7 +149,7 @@ class SearchApp:
         # Sort buttons
         self.sortPriceButton = ttk.Button(self.search_frame, text="Sort price, Ascending", command=self.show_books_price)
         self.sortStockButton = ttk.Button(self.search_frame, text="Sort stock, Ascending", command=self.show_books_stock)
-
+    
         # Listbox to display results
         self.listbox = tk.Listbox(self.master, height=10, width=40, bg='black', fg='white', selectbackground='gray')
         self.listbox.pack(pady=10, fill=tk.BOTH, expand=True)
@@ -118,7 +169,7 @@ class SearchApp:
 
         if selected_index:
             self.listbox.itemconfig(selected_index, {'bg': 'gray'})
-            # Use the filtered books to display details
+            # Use the filtered books to display details 
             self.display_book_details(selected_index[0])
 
     def display_book_details(self, index):
@@ -133,12 +184,11 @@ class SearchApp:
             books = json.load(f)
 
         self.filtered_books = books  # Store all books in filtered_books
-
-        for book in books:
-            self.listbox.insert(tk.END, f"{book['title']} by {book['author']}, price: {book['price']}, stock: {book['stock']}")
-
         self.sortPriceButton.pack(side=tk.LEFT, padx=5)
         self.sortStockButton.pack(side=tk.LEFT, padx=5)
+        for book in books: 
+            self.sortStockButton.pack(side=tk.LEFT, padx=5)
+            self.listbox.insert(tk.END, f"{book['title']} by {book['author']}, price: {book['price']}, stock: {book['stock']}")
 
     def show_books_price(self):
         self.listbox.delete(0, tk.END)  # Clear existing items
@@ -162,21 +212,22 @@ class SearchApp:
         with open('varer.json', 'r') as f:
             books = json.load(f)
 
+        # Toggle the sorting order
         self.toggleStock = not self.toggleStock
         if self.toggleStock:
             self.sortStockButton.config(text="Sort stock, Descending")
         else:
             self.sortStockButton.config(text="Sort stock, Ascending")
 
+        # Sort the books based on stock
         stock_sorted_books = sorted(books, key=lambda x: x['stock'], reverse=self.toggleStock)
 
+        # Insert the sorted books into the listbox
         for book in stock_sorted_books:
             self.listbox.insert(tk.END, f"{book['title']} by {book['author']}, stock: {book['stock']}")
 
-
-        # Listbox to display results
-        self.listbox = tk.Listbox(self.master, height=10, width=40, bg='black', fg='white')
-        self.listbox.pack(pady=10, fill=tk.BOTH, expand=True)
+        # Update filtered_books
+        self.filtered_books = stock_sorted_books
 
 
     def show_about(self):
