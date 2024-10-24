@@ -170,7 +170,7 @@ class SearchApp:
         # Bind events
         self.search_entry.bind("<KeyPress>", lambda event: self.search())
         self.listbox.bind("<<ListboxSelect>>", self.on_select)
-
+ 
     def on_select(self, event):
         selected_index = self.listbox.curselection()
         # Reset all items' background to black first
@@ -278,42 +278,6 @@ class SearchApp:
 
         query = self.search_entry.get()
         
-        def kjøp_knapp(self):
-            selected_index = self.listbox.curselection()
-            
-            if selected_index:
-                book_index = selected_index[0]
-                
-                # Load books from JSON file
-                with open('varer.json', 'r') as f:
-                    books = json.load(f)
-                
-                # Find the selected book
-                for book in books:
-                    if book['title'] == self.filtered_books[book_index]['title']:
-                        current_stock = book['stock']
-                        
-                        # Decrease stock by 1, but don't go below 0
-                        new_stock = max(0, current_stock - 1)
-                        
-                        # Update the book in the JSON file
-                        book['stock'] = new_stock
-                        
-                        # lagrer json filen
-                        with open('varer.json', 'w') as f:
-                            json.dump(books, f, indent=24)
-                        
-                        
-                        self.update_listbox()
-                    break
-    def update_listbox(self):
-        self.listbox.delete(0, tk.END)
-        for book in self.filtered_books:
-            self.listbox.insert(tk.END, f"{book['title']} by {book['author']}, stock: {book['stock']}")
-        
-        # Update the details label
-        self.display_book_details(0)
-
 
 
 if __name__ == "__main__":
