@@ -3,6 +3,7 @@ import tkinter as tk
 import json
 from os import path
 from tkinter import *
+from tkinter import ttk
 class varer:
     def ny_vare():
         # legger til alle globale verdier
@@ -27,14 +28,13 @@ class varer:
         tall=""
         navn=""
         genre=""
-
+        global root
+        global canvas
+        global frame
+        global scrollbar
+        
         root = tk.Tk()
         root.title("ny vare")
-        
-
-
-          
-
 
         def prisen():
             #lagrer filnavnet
@@ -85,7 +85,7 @@ class varer:
                     label.pack(pady=10)
 
 
-
+        
         #legger til text inputen
         
         text_widget = tk.Text(root, height=5)
@@ -131,10 +131,7 @@ class varer:
         #button
         ny_vare= tk.Button(root, text="leg til ny vare", command=prisen)
         ny_vare.pack(pady=10)
+  
         
 
-
-        Listbox = tk.Listbox()
-        Listbox.insert(tk.END, *(f"Element {i} " for i in range(100)))
-        root.mainloop()
 
