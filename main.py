@@ -62,14 +62,15 @@ class SearchApp:
 
                 if username and password:  # Ensure both fields are filled
                 # Check for duplicate username
-                    with open("users.txt", "r") as file:
-                        existing_users = {line.split()[0] for line in file}  # Create a set of existing usernames
+                    try:
+                        with open("users.txt", "r") as file:
+                            existing_users = {line.split()[0] for line in file}  # Create a set of existing usernames
             
-                        if username in existing_users:
-                            ttk.Label(self.signup_frame, text="Brukernavnet finnes allerede!", background='#141414', foreground='red').pack(pady=5)
-                        else:
-                            with open("users.txt", "a") as file:
-                                file.write(f"{username} {password}\n")
+                            if username in existing_users:
+                                ttk.Label(self.signup_frame, text="Brukernavnet finnes allerede!", background='#141414', foreground='red').pack(pady=5)
+                            else:
+                                with open("users.txt", "a") as file:
+                                    file.write(f"{username} {password}\n")
                 # Clear the entries and raise the main frame
                                 self.newuser_entry.delete(0, tk.END)
                                 self.newpass_entry.delete(0, tk.END)
@@ -77,6 +78,8 @@ class SearchApp:
                                 self.mainFrame.tkraise()
                                 self.signup_frame.destroy()
                                 return True
+                    except:
+                        ttk.Label(self.signup_frame, text="Script kjørt fra feil directory, ERRNO2", background="black", foreground="white").pack(pady=5)
                 else:
                     ttk.Label(self.signup_frame, text="Vennligst fyll ut begge felt!", background='#141414', foreground='red').pack(pady=5)
             def signup_widgets():
