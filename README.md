@@ -1,20 +1,17 @@
 # Python-2024-vurdering
  
 # Installasjon
-For å kunne bruke bruke appen så må man installere noen python-moduler.
-
-Skriv dette inn i terminalen:
-sudo apt-get install python3-tk
-
-Hvis du trenger hjelp med å installere så kan du når som helst komme innom IT-avdelingen.
+For å kunne bruke bruke appen så må man installere noen python-pakker.
+Pakkene lastes ned automatisk når du kjører filen kjørmeg.py ved å skrive "python3 kjørmeg.py"
+Det kan hende at du blir spurt om passord før filen kan lastes ned.
 
 # Bruk - Åpne programmet
 For å kjøre programmet så trenger du først og fremst å åpne terminalen.
-Hvis filen main.py ligger inne i en mappe, så skal man bruke cd for å komme seg inn i mappen.
+Hvis mappen file ligger i ligger inne i en mappe, så skal man bruke cd for å komme seg inn i mappen.
 tips:bruk ls for å vise filene og mappene i mappen.
 
-Når du endelig har kommet fram til filen "main.py", så skal vi kjøre filen.
-Skriv inn "python3 main.py" for å kjøre filen.
+Når du endelig har kommet fram til filen "kjørmeg.py", så skal vi kjøre filen.
+Skriv inn "python3 kjørmeg.py" for å kjøre filen.
 
 # Bruk - Logge inn
 For å logge inn så skriver du brukernavn og passord.
